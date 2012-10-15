@@ -1,4 +1,3 @@
-%h3 Home
-- @users.each do |user|
-  %p
-    User: #{link_to user.name, user}
+- @pages.each do |page|
+	%h3
+		= link_to page.title, page_url(page)
