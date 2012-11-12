@@ -6,6 +6,7 @@ Friends::Application.routes.draw do
     end
   end
 
+  match '/admin' => 'admin/pages#index'
   resources :images
 
   resources :galleries
@@ -18,10 +19,19 @@ Friends::Application.routes.draw do
   resources :users
 
   namespace :admin do
-    resources :images
+    resources :sub_pages do
+      resources :images
+    end
+    resources :galleries do
+      resources :images
+    end
     resources :pages do
+      resources :images
       resources :sub_pages do
-        resources :galleries
+        resources :images
+        resources :galleries do
+          resources :images
+        end
       end
     end
   end

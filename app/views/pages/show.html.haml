@@ -1,1 +1,7 @@
-%h2= @page.title
+%h3= @page.title
+- @page.sub_pages.each do |s|
+	.row
+		.span4
+			= image_tag(s.images.first.image.remote_url) unless s.images.empty?
+		.span2
+			= link_to s.title, page_sub_page_path(@page, s)

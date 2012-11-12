@@ -4,6 +4,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+  gem 'jquery-fileupload-rails'
 end
 gem 'jquery-rails'
 gem "puma", ">= 1.6.3"
@@ -18,6 +19,11 @@ gem "bootstrap-sass", ">= 2.1.0.0"
 gem "devise", ">= 2.1.2"
 gem "simple_form", ">= 2.0.4"
 gem "quiet_assets", ">= 1.0.1", :group => :development
+
+gem 'fog'
+gem 'rack-cache', :require => 'rack/cache'
+gem 'dragonfly', '~>0.9.12'
+
 
 # gem 'acts-as-taggable-on'
 gem 'friendly_id'

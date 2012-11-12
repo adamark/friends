@@ -1,0 +1,24 @@
+<%= form_for([:admin, @page, @sub_page, @image]) do |f| %>
+  <% if @image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
+      <ul>
+      <% @image.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.label :image, "Upload Images:" %>
+	<%= f.file_field :image, multiple: true, name: "image[image]" %>
+	<%= f.hidden_field :imageable_id, :value => @sub_page.id %>
+	<%= f.hidden_field :imageable_type, :value => @sub_page.class.to_s %>
+
+<% end %>
+<script id="template-upload" type="text/x-tmpl">
+<div class="upload">
+  {%=o.name%}
+  <div class="progress"><div class="bar" style="width: 0%"></div></div>
+</div>
+</script>

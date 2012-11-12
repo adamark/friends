@@ -1,0 +1,7 @@
+%h3= @sub_page.title
+- @sub_page.galleries.each do |s|
+	.row
+		.span4
+			= image_tag(s.images.first.image.remote_url) unless s.images.empty?
+		.span2
+			= link_to s.title, page_sub_page_gallery_url(@page, @sub_page, s)

@@ -1,11 +1,12 @@
 module Admin
 	class PagesController < BaseController
 	  def index
-	    @pages = Page.all
+	    @pages = Page.find(:all, :order => "created_at")
 	  end
 
 	  def new
 	    @page = Page.new
+	    1.times {@page.images.build}
 	  end
 
 	  def show

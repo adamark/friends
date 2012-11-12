@@ -6,7 +6,9 @@
 			%th Visible/Published?
 			%th Last Update
 			%th Created
-			%th Add
+			%th Images?
+			%th Add Images
+			%th Add Page
 			%th Edit
 			%th Delete
 	%tbody
@@ -17,6 +19,8 @@
 				%td= p.publish ? "Yes" : "No"
 				%td= time_ago_in_words(p.updated_at)
 				%td= time_ago_in_words(p.created_at)
+				%td= p.images.present? ? p.images.count : "None"
+				%td
 				%td= link_to icon("pencil", "Add Sub-Page"), new_admin_page_sub_page_url(p.id), class: "btn btn-primary"
 				%td= link_to icon("edit", "Edit"), edit_admin_page_url(p.id), class: "btn btn-warning"
 				%td= link_to icon("trash", "Delete page"), admin_page_url(p.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
@@ -27,6 +31,8 @@
 						%td= s.publish ? "Yes" : "No"
 						%td= time_ago_in_words(s.updated_at)
 						%td= time_ago_in_words(s.created_at)
+						%td= s.images.present? ? s.images.count : "None"
+						%td= link_to icon("film", "Add Images"), new_admin_page_sub_page_image_url(p.id, s.id), class: "btn btn-success"
 						%td= link_to icon("pencil", "Add Sub-Page"), new_admin_page_sub_page_gallery_url(p.id, s.id), class: "btn btn-primary"
 						%td= link_to icon("edit", "Edit"), edit_admin_page_sub_page_url(p.id, s.id), class: "btn btn-warning"
 						%td= link_to icon("trash", "Delete page"), admin_page_sub_page_url(p.id, s.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
@@ -39,6 +45,8 @@
 								%td= g.publish ? "Yes" : "No"
 								%td= time_ago_in_words(g.updated_at)
 								%td= time_ago_in_words(g.created_at)
+								%td= g.images.present? ? g.images.count : "None"
+								%td= link_to icon("film", "Add Images"), new_admin_page_sub_page_gallery_image_url(p.id, s.id, g.id), class: "btn btn-success"
 								%td
 								%td= link_to icon("edit", "Edit"), edit_admin_page_sub_page_gallery_url(p.id, s.id, g.id), class: "btn btn-warning"
 								%td= link_to icon("trash", "Delete page"), admin_page_sub_page_gallery_url(p.id, s.id, g.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"

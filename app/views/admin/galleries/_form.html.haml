@@ -5,3 +5,5 @@
 	= f.input :page_id, as: :hidden, :input_html => {:value => @page.id}
 	= f.input :sub_page_id, as: :hidden, :input_html => {:value => @sub_page.id}
 	= f.button :submit, :class => 'btn-primary'
+	= link_to 'Back', :back, class: 'btn btn-warning'
+	

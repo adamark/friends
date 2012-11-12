@@ -8,6 +8,7 @@ class SubPagesController < ApplicationController
   end
 
   def show
+    @page = Page.find(params[:page_id])
     @sub_page = SubPage.find(params[:id])
   end
 

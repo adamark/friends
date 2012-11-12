@@ -1,0 +1,11 @@
+%h2 Add Images
+= link_to 'Back', :back, class: 'btn btn-warning'
+#images
+	= render @images
+.clear
+- if @gallery.present?
+	= render 'gallery_form'
+- elsif @sub_page.present? && @gallery.nil?
+	= render 'sub_form'
+- else
+	= render 'page_form'

@@ -1,0 +1,88 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+*/
+
+$home-bg-gif: '<%= Page.find_by_title("Home").images.first.image.remote_url %>';
+$sound-bg-gif: '<%= Page.find_by_title("Sound").images.first.image.remote_url %>';
+$visions-bg-gif: '<%= Page.find_by_title("Visions").images.first.image.remote_url %>';
+$space-bg-gif: '<%= Page.find_by_title("Space").images.first.image.remote_url %>';
+$time-bg-gif: '<%= Page.find_by_title("Time").images.first.image.remote_url %>';
+// $home-bg-gif: "/system/dragonfly/development/2012/10/24/19_43_55_334_rainbows.gif";
+
+@mixin radius {
+	-webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+}
+
+#main {
+	min-height:100%;
+}
+
+.content {
+  background-color: #eee;
+  padding: 20px;
+  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  @include radius;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.pub-content {
+	padding: 80px 20px;
+  margin: 0 -20px;
+	@include radius;
+}
+.clear {clear:both;}
+
+#main-nav {
+	width:100%;
+	margin:0 auto;
+	text-align:center;
+
+	ul {
+		display:inline-block;
+		padding:2px;
+		margin:0;
+
+		li {
+			display:inline;
+			list-style-type:none;
+			margin:10px 50px;
+			
+		}
+	}
+}
+
+
+
+.home-hover {
+	background-image: url($home-bg-gif);
+}
+.sound-hover {
+	background-image: url($sound-bg-gif);
+}
+.visions-hover {
+	background-image: url($visions-bg-gif);
+}
+.space-hover {
+	background-image: url($space-bg-gif);
+}
+.time-hover {
+	background-image: url($time-bg-gif);
+}
+
+.nav-links {
+
+}

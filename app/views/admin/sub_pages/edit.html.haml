@@ -1,2 +1,5 @@
 %h2 Edit #{@sub_page.title} sub-page from #{@page.title}
 = render 'form'
+.clear
+	= link_to icon("pencil", "Add Images"), new_admin_page_sub_page_image_url(@page.id, @sub_page.id), class: "btn btn-success"
+	

@@ -1,0 +1,8 @@
+#main-nav
+	%ul.home-hover
+		- Page.find(:all, :order => "created_at").each do |page|
+			%li.nav-links
+				- if page.title == "?"
+					= link_to page.title, page_path(page), :id => "question-link"
+				- else
+					= link_to page.title, page_path(page), :id => "#{page.title.downcase}-link"
