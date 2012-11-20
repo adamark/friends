@@ -9,15 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require bootstrap-wysihtml5
+ *= require fancybox
  *= require_tree .
 */
 
-$home-bg-gif: '<%= Page.find_by_title("Home").images.first.image.remote_url %>';
-$sound-bg-gif: '<%= Page.find_by_title("Sound").images.first.image.remote_url %>';
-$visions-bg-gif: '<%= Page.find_by_title("Visions").images.first.image.remote_url %>';
-$space-bg-gif: '<%= Page.find_by_title("Space").images.first.image.remote_url %>';
-$time-bg-gif: '<%= Page.find_by_title("Time").images.first.image.remote_url %>';
-// $home-bg-gif: "/system/dragonfly/development/2012/10/24/19_43_55_334_rainbows.gif";
 
 @mixin radius {
 	-webkit-border-radius: 0 0 6px 6px;
@@ -39,7 +35,7 @@ $time-bg-gif: '<%= Page.find_by_title("Time").images.first.image.remote_url %>';
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
-.pub-content {
+.pub-content { 
 	padding: 80px 20px;
   margin: 0 -20px;
 	@include radius;
@@ -50,6 +46,7 @@ $time-bg-gif: '<%= Page.find_by_title("Time").images.first.image.remote_url %>';
 	width:100%;
 	margin:0 auto;
 	text-align:center;
+	padding-bottom:70px;
 
 	ul {
 		display:inline-block;
@@ -64,25 +61,40 @@ $time-bg-gif: '<%= Page.find_by_title("Time").images.first.image.remote_url %>';
 		}
 	}
 }
-
-
-
-.home-hover {
-	background-image: url($home-bg-gif);
-}
-.sound-hover {
-	background-image: url($sound-bg-gif);
-}
-.visions-hover {
-	background-image: url($visions-bg-gif);
-}
-.space-hover {
-	background-image: url($space-bg-gif);
-}
-.time-hover {
-	background-image: url($time-bg-gif);
+.image-list { padding: 60px 0;}
+.image-link-wrapper	{
+	margin:40px 0;
 }
 
-.nav-links {
+.text-link {
+	margin-top: 30px;
+}
 
+$home-bg-gif: '<%= Page.find_by_title("Home").image.remote_url if Page.find_by_title("Home").image.present? %>';
+$sound-bg-gif: '<%= Page.find_by_title("Sound").image.remote_url if Page.find_by_title("Sound").image.present? %>';
+$visions-bg-gif: '<%= Page.find_by_title("Visions").image.remote_url if Page.find_by_title("Visions").image.present? %>';
+$space-bg-gif: '<%= Page.find_by_title("Space").image.remote_url if Page.find_by_title("Space").image.present? %>';
+$time-bg-gif: '<%= Page.find_by_title("Time").image.remote_url if Page.find_by_title("Time").image.present? %>';
+// $home-bg-gif: "/system/dragonfly/development/2012/10/24/19_43_55_334_rainbows.gif";
+//.home-hover {
+//	background-image: url($home-bg-gif);
+//}
+//.sound-hover {
+//	background-image: url($sound-bg-gif);
+//}
+//.visions-hover {
+//	background-image: url($visions-bg-gif);
+//}
+//.space-hover {
+//	background-image: url($space-bg-gif);
+//}
+//.time-hover {
+//	background-image: url($time-bg-gif);
+//}
+//
+.fancybox-wrap, .fancybox-outer, .fancybox-inner {
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	-safari-box-sizing: content-box;
+	box-sizing: content-box;
 }

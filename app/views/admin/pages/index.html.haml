@@ -1,4 +1,3 @@
-%h2 Admin
 %table.table.table-striped
 	%thead
 		%tr
@@ -7,46 +6,74 @@
 			%th Last Update
 			%th Created
 			%th Images?
-			%th Add Images
+			%th Add Gallery
 			%th Add Page
 			%th Edit
 			%th Delete
 	%tbody
 		- @pages.each do |p|
-			%tr
-				%td
-					%h4= p.title
-				%td= p.publish ? "Yes" : "No"
-				%td= time_ago_in_words(p.updated_at)
-				%td= time_ago_in_words(p.created_at)
-				%td= p.images.present? ? p.images.count : "None"
-				%td
-				%td= link_to icon("pencil", "Add Sub-Page"), new_admin_page_sub_page_url(p.id), class: "btn btn-primary"
-				%td= link_to icon("edit", "Edit"), edit_admin_page_url(p.id), class: "btn btn-warning"
-				%td= link_to icon("trash", "Delete page"), admin_page_url(p.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
-			- if p.sub_pages.present?
-				- p.sub_pages.each do |s|
-					%tr
-						%td= icon("arrow-right", s.title)
-						%td= s.publish ? "Yes" : "No"
-						%td= time_ago_in_words(s.updated_at)
-						%td= time_ago_in_words(s.created_at)
-						%td= s.images.present? ? s.images.count : "None"
-						%td= link_to icon("film", "Add Images"), new_admin_page_sub_page_image_url(p.id, s.id), class: "btn btn-success"
-						%td= link_to icon("pencil", "Add Sub-Page"), new_admin_page_sub_page_gallery_url(p.id, s.id), class: "btn btn-primary"
-						%td= link_to icon("edit", "Edit"), edit_admin_page_sub_page_url(p.id, s.id), class: "btn btn-warning"
-						%td= link_to icon("trash", "Delete page"), admin_page_sub_page_url(p.id, s.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
-					- if s.galleries.present?
-						- s.galleries.each do |g|
+			- if p.parent_id == nil
+				%tr
+					%td
+						%h4= p.title
+					%td= p.publish ? "Yes" : "No"
+					%td= time_ago_in_words(p.updated_at)
+					%td= time_ago_in_words(p.created_at)
+					%td= p.images.present? ? p.images.count : "None"
+					%td
+					%td= link_to icon("pencil", "Add Child Page"), admin_new_nested_path(p.id), class: "btn btn-primary"
+					%td= link_to icon("edit", "Edit"), edit_admin_page_url(p.id), class: "btn btn-warning"
+					%td= link_to icon("trash", "Delete page"), admin_page_url(p.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
+				- if p.children.present?
+					- p.children.each do |child|
+						- if child.parent_branch == p.title.downcase
 							%tr
-								%td
-									= icon("arrow-right", '')
-									= icon("arrow-right", g.title)
-								%td= g.publish ? "Yes" : "No"
-								%td= time_ago_in_words(g.updated_at)
-								%td= time_ago_in_words(g.created_at)
-								%td= g.images.present? ? g.images.count : "None"
-								%td= link_to icon("film", "Add Images"), new_admin_page_sub_page_gallery_image_url(p.id, s.id, g.id), class: "btn btn-success"
-								%td
-								%td= link_to icon("edit", "Edit"), edit_admin_page_sub_page_gallery_url(p.id, s.id, g.id), class: "btn btn-warning"
-								%td= link_to icon("trash", "Delete page"), admin_page_sub_page_gallery_url(p.id, s.id, g.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
+								%td= icon("arrow-right", child.title)
+								%td= child.publish ? "Yes" : "No"
+								%td= time_ago_in_words(child.updated_at)
+								%td= time_ago_in_words(child.created_at)
+								%td= child.images.present? ? child.images.count : "None"
+								%td= link_to icon("film", "Add Gallery"), new_admin_page_image_url(child.id), class: "btn btn-success"
+								%td= link_to icon("pencil", "Add Child Page"), admin_new_nested_path(child.id), class: "btn btn-primary"
+								%td= link_to icon("edit", "Edit"), edit_admin_page_path(child.id), class: "btn btn-warning"
+								%td= link_to icon("trash", "Delete page"), admin_page_url(child.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
+						- if child.children.present?
+							- child.children.each do |child_nested|
+								%tr
+									%td
+										= icon("arrow-right", '')
+										= icon("arrow-right", child_nested.title)
+									%td= child_nested.publish ? "Yes" : "No"
+									%td= time_ago_in_words(child_nested.updated_at)
+									%td= time_ago_in_words(child_nested.created_at)
+									%td= child_nested.images.present? ? child_nested.images.count : "None"
+									%td= link_to icon("film", "Add Gallery"), new_admin_page_image_url(child_nested.id), class: "btn btn-success"
+									%td
+									%td= link_to icon("edit", "Edit"), edit_admin_page_path(child_nested.id), class: "btn btn-warning"
+									%td= link_to icon("trash", "Delete page"), admin_page_url(child_nested.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
+				/ - if p.sub_pages.present?
+				/ 	- p.sub_pages.each do |s|
+				/ 		%tr
+				/ 			%td= icon("arrow-right", s.title)
+				/ 			%td= s.publish ? "Yes" : "No"
+				/ 			%td= time_ago_in_words(s.updated_at)
+				/ 			%td= time_ago_in_words(s.created_at)
+				/ 			%td= s.images.present? ? s.images.count : "None"
+				/ 			%td= link_to icon("film", "Add Images"), new_admin_page_sub_page_image_url(p.id, s.id), class: "btn btn-success"
+				/ 			%td= link_to icon("pencil", "Add Sub-Page"), new_admin_page_sub_page_gallery_url(p.id, s.id), class: "btn btn-primary"
+				/ 			%td= link_to icon("edit", "Edit"), edit_admin_page_sub_page_url(p.id, s.id), class: "btn btn-warning"
+				/ 			%td= link_to icon("trash", "Delete page"), admin_page_sub_page_url(p.id, s.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"
+				/ 		- if s.galleries.present?
+				/ 			- s.galleries.each do |g|
+				/ 				%tr
+				/ 					%td
+				/ 						= icon("arrow-right", '')
+				/ 						= icon("arrow-right", g.title)
+				/ 					%td= g.publish ? "Yes" : "No"
+				/ 					%td= time_ago_in_words(g.updated_at)
+				/ 					%td= time_ago_in_words(g.created_at)
+				/ 					%td= g.images.present? ? g.images.count : "None"
+				/ 					%td= link_to icon("film", "Add Images"), new_admin_page_sub_page_gallery_image_url(p.id, s.id, g.id), class: "btn btn-success"
+				/ 					%td
+				/ 					%td= link_to icon("edit", "Edit"), edit_admin_page_sub_page_gallery_url(p.id, s.id, g.id), class: "btn btn-warning"
+				/ 					%td= link_to icon("trash", "Delete page"), admin_page_sub_page_gallery_url(p.id, s.id, g.id), method: :delete, confirm: "Are you sure you\'d like to delete this project?", disable_with: "Deleting...", class: "btn btn-danger"

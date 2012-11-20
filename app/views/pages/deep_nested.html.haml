@@ -1,0 +1,13 @@
+%h3= @deep_nested_page.title
+- if @deep_nested_page.images.present?
+  - @deep_nested_page.images.each do |i|
+    .row.image-list
+      .span6.image-link
+        = link_to image_tag(i.image.remote_url), i.image.remote_url, class: 'fancybox', :rel => 'group'
+- else
+  - @deep_nested_page.videos.each do |v|
+    .row.image-link-wrapper
+      .span6.image-link
+        = raw(v.video)
+- content_for :extra_styles do
+  = background_and_links_css(@deep_nested_page)

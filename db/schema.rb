@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121015042856) do
+ActiveRecord::Schema.define(:version => 20121117102931) do
 
   create_table "galleries", :force => true do |t|
     t.string   "title"
@@ -40,10 +40,17 @@ ActiveRecord::Schema.define(:version => 20121015042856) do
   create_table "pages", :force => true do |t|
     t.string   "title"
     t.text     "content"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.string   "slug"
     t.boolean  "publish"
+    t.integer  "parent_id"
+    t.string   "parent_branch"
+    t.string   "link_color"
+    t.string   "background_color"
+    t.string   "image_uid"
+    t.string   "image_name"
+    t.string   "friendly_title"
   end
 
   add_index "pages", ["slug"], :name => "index_pages_on_slug", :unique => true
@@ -85,5 +92,12 @@ ActiveRecord::Schema.define(:version => 20121015042856) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.integer  "page_id"
+    t.text     "video"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end

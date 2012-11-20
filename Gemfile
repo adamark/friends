@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 gem 'rails', '3.2.8'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -6,6 +6,17 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'jquery-fileupload-rails'
 end
+
+group :development, :test do
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-doc'
+  gem 'awesome_print'
+end
+
+gem 'therubyracer', :platform => :ruby
+gem "linguistics", "~> 2.0.0"
+gem "loggability", "~> 0.5.0"
 gem 'jquery-rails'
 gem "puma", ">= 1.6.3"
 gem "pg", ">= 0.14.1"
@@ -24,6 +35,15 @@ gem 'fog'
 gem 'rack-cache', :require => 'rack/cache'
 gem 'dragonfly', '~>0.9.12'
 
+gem 'bootstrap-wysihtml5-rails', :require => 'bootstrap-wysihtml5-rails',
+																:git => 'git://github.com/Nerian/bootstrap-wysihtml5-rails.git'
+
+gem 'fancybox2-rails', '~> 0.2.1'
 
 # gem 'acts-as-taggable-on'
 gem 'friendly_id'
+gem 'rubber'
+gem 'open4'
+gem 'gelf'
+gem 'graylog2_exceptions', :git => 'git://github.com/wr0ngway/graylog2_exceptions.git'
+gem 'graylog2-resque'

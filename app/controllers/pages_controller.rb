@@ -3,40 +3,19 @@ class PagesController < ApplicationController
     @pages = Page.all
   end
 
-  def new
-    @page = Page.new
-  end
-
   def show
     @page = Page.find(params[:id])
   end
 
-  def edit
+  def nested
     @page = Page.find(params[:id])
+    @nested_page = Page.find(params[:nested_id])
   end
 
-  def create
-    @page = Page.new(params[:page])
-    if @page.save
-      flash[:success] = "Done!"
-      redirect_to pages_url
-    else
-      render 'new'
-    end
+  def deep_nested
+    @page = Page.find(params[:id])
+    @nested_page = Page.find(params[:nested_id])
+    @deep_nested_page = Page.find(params[:nested_page_id])
   end
 
-  def update
-    @page = Page.find(params[:id])
-    if @page.update_attributes(params[:page])
-      flash[:success] = "Updated!"
-      redirect_to pages_url
-    else
-      render 'edit'
-    end
-  end
-
-  def destroy
-    @page = Page.find(params[:id])
-    @page.destroy
-  end
 end

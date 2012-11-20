@@ -10,10 +10,14 @@
     </div>
   <% end %>
 
-	<%= f.label :image, "Upload Images:" %>
-	<%= f.file_field :image, multiple: true, name: "image[image]" %>
+	<%#= f.label :image, "Upload Images:" %>
+	<%#= f.file_field :image, multiple: true, name: "image[image]" %>
 	<%= f.hidden_field :imageable_id, :value => @page.id %>
 	<%= f.hidden_field :imageable_type, :value => @page.class.to_s %>
+  <div class='hero-unit drag-drop-hero'>
+    <h2>Drop Images Here</h2>
+    <p>Or: <%= f.file_field :image, multiple: true, name: "image[image]" %></p>
+  </div>
 
 <% end %>
 <script id="template-upload" type="text/x-tmpl">

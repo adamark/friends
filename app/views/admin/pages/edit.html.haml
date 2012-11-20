@@ -1,3 +1,5 @@
 %h2 Edit #{@page.title}
+%ul.nav.nav-list
+	%li.divider
 = render 'form'
-= link_to "Add Background Image/Gif", new_admin_page_image_path(@page), :class => 'btn btn-success'
+/ # = link_to "Add Background Image/Gif", new_admin_page_image_path(@page), :class => 'btn btn-success'

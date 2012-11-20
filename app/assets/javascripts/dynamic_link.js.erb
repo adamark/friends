@@ -1,0 +1,14 @@
+$(document).ready(function() {
+	
+	$('#question-link').click(function(event) {
+		event.preventDefault()
+
+		var urlArray = <%= Page.find_by_title('?').content.split(',') %>;
+		var url = urlArray[Math.floor(Math.random() * urlArray.length)];
+		
+		window.open(url, '_blank');
+		return false;
+
+	})
+
+});

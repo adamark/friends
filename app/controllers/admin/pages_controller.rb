@@ -5,8 +5,8 @@ module Admin
 	  end
 
 	  def new
+	    @parent_page = Page.find(params[:id])
 	    @page = Page.new
-	    1.times {@page.images.build}
 	  end
 
 	  def show
@@ -37,7 +37,11 @@ module Admin
 
 	  def destroy
 	    @page = Page.find(params[:id])
-	    @page.destroy
+	    if @page.destroy
+	      redirect_to admin_pages_url, notice: 'Page was successfully deleted!'
+	    else
+	      render 'index'
+	    end
 	  end
 	end
 end

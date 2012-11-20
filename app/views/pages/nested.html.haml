@@ -1,0 +1,23 @@
+%h3= @nested_page.title
+- if @nested_page.images.present?
+  - @nested_page.images.each do |i|
+    .row.image-list
+      .span6.image-link
+        = link_to image_tag(i.image.remote_url), i.image.remote_url, class: 'fancybox', :rel => 'group'
+- elsif @nested_page.children.published.present?
+  - @nested_page.children.published.each do |s|
+    .row.image-link-wrapper
+      .span6.image-link
+        = link_to image_tag(s.image.remote_url), deeply_nested_page_path(@page, @nested_page, s) unless s.image.blank?
+      .span2.text-link
+        = link_to s.title, deeply_nested_page_path(@page, @nested_page, s)
+- elsif @nested_page.videos.present?
+  - @nested_page.videos.each do |v|
+    .row.image-link-wrapper
+      .span6.image-link
+        = raw(v.video)
+- else
+  %h2 more soon to come.. thanks!
+
+- content_for :extra_styles do
+  = background_and_links_css(@nested_page)

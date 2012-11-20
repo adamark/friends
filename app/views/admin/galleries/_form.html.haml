@@ -1,9 +1,0 @@
-= simple_form_for([:admin, @page, @sub_page, @gallery]) do |f|
-	= f.input :title
-	= f.input :content
-	= f.input :publish, :as => :boolean
-	= f.input :page_id, as: :hidden, :input_html => {:value => @page.id}
-	= f.input :sub_page_id, as: :hidden, :input_html => {:value => @sub_page.id}
-	= f.button :submit, :class => 'btn-primary'
-	= link_to 'Back', :back, class: 'btn btn-warning'
-	

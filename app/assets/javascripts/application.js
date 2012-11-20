@@ -16,4 +16,6 @@
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
 //= require bootstrap
+//= require bootstrap-wysihtml5
+//= require fancybox
 //= require_tree .

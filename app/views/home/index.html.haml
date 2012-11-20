@@ -3,20 +3,27 @@
 / 		%li
 / 			%h3
 / 				= link_to page.title, page_url(page)
+= content_for :extra_styles do
+  = link_gifs
 
 :javascript
-	$('#home-link').hover(function(){
-		$('#main').toggleClass('home-hover');
-	})
-	$('#sound-link').hover(function(){
-		$('#main').toggleClass('sound-hover');
-	})
-	$('#visions-link').hover(function(){
-		$('#main').toggleClass('visions-hover');
-	})
-	$('#space-link').hover(function(){
-		$('#main').toggleClass('space-hover');
-	})
-	$('#time-link').hover(function(){
-		$('#main').toggleClass('time-hover');
-	})
+  $('#home-link').hover(function(){
+    $('#main').toggleClass('home-hover');
+    $('.nav-link').toggleClass('home-link-hover');
+  })
+  $('#sound-link').hover(function(){
+    $('#main').toggleClass('sound-hover');
+    $('.nav-link').toggleClass('sound-link-hover');
+  })
+  $('#visions-link').hover(function(){
+    $('#main').toggleClass('visions-hover');
+    $('.nav-link').toggleClass('visions-link-hover');
+  })
+  $('#space-link').hover(function(){
+    $('#main').toggleClass('space-hover');
+    $('.nav-link').toggleClass('space-link-hover');
+  })
+  $('#time-link').hover(function(){
+    $('#main').toggleClass('time-hover');
+    $('.nav-link').toggleClass('time-link-hover');
+  })

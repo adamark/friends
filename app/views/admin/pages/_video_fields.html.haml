@@ -1,0 +1,5 @@
+%fieldset
+  = f.input :video, label: "Embed Video"
+  = f.check_box :_destroy
+  = f.label :_destroy, "Delete Video"
+  = link_to "remove", '#', class: "remove_fields"

@@ -1,0 +1,9 @@
+#main-nav
+	%ul
+		- Page.published.order(:created_at).each do |page|
+			- if page.parent_id.nil?
+				%li.nav-links
+					- if page.title == "?"
+						= link_to page.title, random_url, :id => "question-link", :class => "nav-link"
+					- else
+						= link_to page.title, top_page_path(page), :id => "#{page.title.downcase}-link", :class => "nav-link"

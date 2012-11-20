@@ -1,11 +1,11 @@
-%h2 Add Images
+%h2= 'Gallery for ' + @page.title
 = link_to 'Back', :back, class: 'btn btn-warning'
-#images
-	= render @images
+%ul.nav.nav-list
+	%li.divider
+.row
+	#images
+		= render @images
+%ul.nav.nav-list
+	%li.divider
 .clear
-- if @gallery.present?
-	= render 'gallery_form'
-- elsif @sub_page.present? && @gallery.nil?
-	= render 'sub_form'
-- else
 	= render 'page_form'

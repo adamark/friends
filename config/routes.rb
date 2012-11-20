@@ -1,38 +1,21 @@
 Friends::Application.routes.draw do
 
-  resources :pages do
-    resources :sub_pages do
-      resources :galleries
-    end
-  end
-
-  match '/admin' => 'admin/pages#index'
-  resources :images
-
-  resources :galleries
-
-  authenticated :user do
-    root :to => 'home#index'
-  end
   root :to => "home#index"
   devise_for :users
-  resources :users
+  # resources :users
 
   namespace :admin do
-    resources :sub_pages do
-      resources :images
-    end
-    resources :galleries do
-      resources :images
-    end
+    match "pages/:id/new" => 'pages#new', as: :new_nested
     resources :pages do
       resources :images
-      resources :sub_pages do
-        resources :images
-        resources :galleries do
-          resources :images
-        end
-      end
     end
+  
   end
+  match '/admin' => 'admin/pages#index', as: :admin_home
+
+  match "/:id" => 'pages#show', as: :top_page
+  match "/:id/:nested_id" => 'pages#nested', as: :nested_page
+  match "/:id/:nested_id/:nested_page_id" => 'pages#deep_nested', as: :deeply_nested_page
+
+
 end

@@ -1,0 +1,11 @@
+- if user_signed_in?
+  = link_to "Best Friends Admin", admin_home_path, :class => 'brand'
+  %ul.nav  
+    %li
+      = link_to 'Logout', destroy_user_session_path, :method=>'delete'
+    %li
+      = link_to 'Edit account', edit_user_registration_path
+    %li
+      = link_to 'Visit Site', root_path
+- else
+  = link_to "Best Friends", root_path, :class => 'brand'

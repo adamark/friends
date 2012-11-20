@@ -7,6 +7,8 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 puts 'SETTING UP DEFAULT USER LOGIN'
 user = User.create! :name => 'Derek Weber', :email => 'user@example.com', :password => 'foobar', :password_confirmation => 'foobar'
+admin = User.create! :name => 'Adam Mark', :email => 'adam@example.com', :password => 'foobar', :password_confirmation => 'foobar'
 puts 'New user created: ' << user.name
+puts 'New user created: ' << admin.name
 
-pages = Page.create([{title: 'Home'},{title: 'Sound'},{title: 'Visions'},{title: '?'},{title: 'Space'},{title: 'Time'}])
+pages = Page.create([{title: 'Home', publish: true},{title: 'Sound', publish: true},{title: 'Visions', publish: true},{title: '?', publish: true},{title: 'Space', publish: true},{title: 'Time', publish: true}])
