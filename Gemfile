@@ -18,7 +18,7 @@ gem 'therubyracer', :platform => :ruby
 gem "linguistics", "~> 2.0.0"
 gem "loggability", "~> 0.5.0"
 gem 'jquery-rails'
-gem "puma", ">= 1.6.3"
+gem "thin"
 gem "pg", ">= 0.14.1"
 gem "haml", ">= 3.1.7"
 gem "haml-rails", ">= 0.3.5", :group => :development
@@ -40,10 +40,4 @@ gem 'bootstrap-wysihtml5-rails', :require => 'bootstrap-wysihtml5-rails',
 
 gem 'fancybox2-rails', '~> 0.2.1'
 
-# gem 'acts-as-taggable-on'
 gem 'friendly_id'
-gem 'rubber'
-gem 'open4'
-gem 'gelf'
-gem 'graylog2_exceptions', :git => 'git://github.com/wr0ngway/graylog2_exceptions.git'
-gem 'graylog2-resque'
