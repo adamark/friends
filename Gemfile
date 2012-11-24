@@ -6,7 +6,6 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
-  gem 'jquery-fileupload-rails'
 end
 
 group :development, :test do
@@ -16,6 +15,7 @@ group :development, :test do
   gem 'awesome_print'
 end
 
+gem 'jquery-fileupload-rails'
 gem 'therubyracer', :platform => :ruby
 gem "linguistics", "~> 2.0.0"
 gem "loggability", "~> 0.5.0"
