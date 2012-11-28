@@ -1,7 +1,13 @@
 module ApplicationHelper
 
+  def make_url_array_or_default
+    content = Page.find_by_title('?').content
+    content.present? ? content.split(',') : root_url
+  end
+
   def random_url
-    array = Page.find_by_title('?').content.split(',').shuffle.first
+    content = Page.find_by_title('?').content
+    content.present? ? content.split(',').shuffle.first : root_url
   end
 
   def icon(name, content)

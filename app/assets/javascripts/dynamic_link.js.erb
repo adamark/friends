@@ -3,7 +3,7 @@ $(document).ready(function() {
 	$('#question-link').click(function(event) {
 		event.preventDefault()
 
-		var urlArray = <%= Page.find_by_title('?').content.split(',') %>;
+		var urlArray = <%= make_url_array_or_default %>;
 		var url = urlArray[Math.floor(Math.random() * urlArray.length)];
 		
 		window.open(url, '_blank');
