@@ -2,6 +2,7 @@ $(document).ready(function() {
 	
 	$('#question-link').click(function(event) {
 		event.preventDefault()
+    <% environment.context_class.instance_eval { include ApplicationHelper } %>
 
 		var urlArray = <%= make_url_array_or_default %>;
 		var url = urlArray[Math.floor(Math.random() * urlArray.length)];
