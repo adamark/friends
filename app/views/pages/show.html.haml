@@ -11,7 +11,7 @@
         .span2.text-link
           = link_to s.title, nested_page_path(@page, s)
 
-- elsif !@page.content.empty?
+- elsif @page.content?
   = raw(@page.content)
 - else
   %h2 more soon to come.. thanks!
