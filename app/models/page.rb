@@ -7,6 +7,7 @@ class Page < ActiveRecord::Base
   
   before_create :title_to_friendly_title
   before_create :default_name
+  after_create :setup_slugs
 
   scope :published, where(publish: true)
 
@@ -33,5 +34,9 @@ class Page < ActiveRecord::Base
     self.image_name ||= File.basename(image.filename, '.*').titleize if image
   end
 
+  def setup_slugs
+    self.slug = self.friendly_title
+    self.save
+  end
 
 end
