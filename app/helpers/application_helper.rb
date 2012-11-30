@@ -2,12 +2,12 @@ module ApplicationHelper
 
   def make_url_array_or_default
     content = Page.find_by_title('?').content
-    content.present? ? content.split(',') : root_url
+    content.present? ? content.split(',') : %W(#{Rails.application.routes.url_helpers.root_path})
   end
 
   def random_url
     content = Page.find_by_title('?').content
-    content.present? ? content.split(',').shuffle.first : root_url
+    content.present? ? content.split(',').shuffle.first : %W(#{Rails.application.routes.url_helpers.root_path})
   end
 
   def icon(name, content)
