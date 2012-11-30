@@ -7,7 +7,7 @@ module ApplicationHelper
 
   def random_url
     content = Page.find_by_title('?').content
-    content.present? ? content.split(',').shuffle.first : %w(http://google.com)
+    content.present? ? content.split(',').shuffle.first : root_url
   end
 
   def icon(name, content)
